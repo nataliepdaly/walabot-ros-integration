@@ -1,5 +1,5 @@
 from __future__ import print_function
-import string
+from std_msgs.msg import String
 from sys import platform
 from os import system
 from imp import load_source
@@ -26,7 +26,7 @@ def targets_to_message(targets):
         return 'No Target Detected'
 
 def sensor_app():
-    pub = rospy.Publisher('walabot_targets', string, queue_size=20)
+    pub = rospy.Publisher('walabot_targets', String, queue_size=20)
     rospy.init_node('walabot_targets', anonymous=True)
     # wlbt.SetArenaR - input parameters
     minInCm, maxInCm, resInCm = 30, 200, 3
@@ -76,7 +76,6 @@ def sensor_app():
     wlbt.Stop()
     wlbt.Disconnect()
     wlbt.Clean()
-    print('Terminate successfully')
 
 if __name__ == '__main__':
     try:
